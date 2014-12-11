@@ -8,4 +8,4 @@ deploy:
     secure: UUUyhkv9jCqHc3qsneS6/W7kw5MtUipkNEqbzBLQFv43I+upaWTwpPqz9zXbNjEICPBVviv7KCxPsyuTlXkdU2Zu+f1OVSljckuiWR3dyqcTemf5IBVWHv13TBCBZpsrNXsHA96MZFOCVHF/5kpP2u84fo/gu80pjAUAT4o9yks=
   app: rocky-peak-6706
   on:
-    repo: colmdoyle/irishtechstartups-hubot
+    repo: IrishTechStartups/irishtechstartups-hubot
