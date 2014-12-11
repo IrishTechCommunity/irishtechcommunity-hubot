@@ -19,7 +19,8 @@
     "hubot-shipit": "^0.1.1",
     "hubot-slack": "^3.1.0",
     "hubot-youtube": "^0.1.2",
-    "hubot-dublinbikes": "^1.0.4"
+    "hubot-dublinbikes": "^1.0.4",
+    "hubot-irish-rail": "~1.0.0"
   },
   "engines": {
     "node": "0.10.x"
