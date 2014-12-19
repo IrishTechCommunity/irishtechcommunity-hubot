@@ -9,7 +9,6 @@ slackKey = process.env.HUBOT_SLACK_TOKEN
 unless slackKey?
   console.log "Missing Hubot Slack Token for admin script"
 
-admins = '\n>>>'
 
 module.exports = (robot) ->
   robot.respond /admins/i, (msg) ->
@@ -17,6 +16,7 @@ module.exports = (robot) ->
       .header('Accept', 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
+        admins = '\n>>>'
         for member in data.members
           if member.is_admin is true
             admins += '@' + member.name
