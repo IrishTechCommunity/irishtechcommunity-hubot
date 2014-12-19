@@ -20,8 +20,8 @@ module.exports = (robot) ->
         for member in data.members
           if member.is_admin is true
             admins += '@' + member.name
-          if typeof member.profile.first_name isnt 'undefined'
-            admins += ' - ' +  member.profile.first_name
-          admins += '\n'
+            if typeof member.profile.first_name isnt 'undefined'
+              admins += ' - ' +  member.profile.first_name
+            admins += '\n'
         msg.send "The current admins are #{admins}"
 
