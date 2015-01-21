@@ -27,9 +27,14 @@ module.exports = (robot) ->
               console.log("#{sender} sent an invite to #{email_address}")
               msg.reply "Ok, I've sent an invite to #{email_address}"
             else
+              if(data.error == 'already_invited')
+                msg.reply "That email address has already been invited!"
+              else if (data.error == 'sent_recently')
+                msg.reply "Someone recently sent an invite to this email address"
+              else
+                msg.reply "Herp, something went wrong"
               console.log("#{sender} sent an invite to #{email_address}, but it failed")
               console.log(body)
               console.log(data)
-              msg.reply "Herp, something went wrong"
     else
       msg.reply "Was that a valid email address?"
