@@ -12,16 +12,14 @@ unless slackKey?
 module.exports = (robot) ->
   robot.respond /invite (.*)/i, (msg) ->
     sender = msg.message.user.name.toLowerCase()
-    email_address = encodeURIComponent(msg.match[1])
+    email_address = msg.match[1].split('|')[1].slice(0,-1)
     data = "email=#{email_address}&channels=C035FCDDD&set_active=true&_attempts=1&token=#{slackKey}"
     console.log(data)
     robot.http("https://irishtechcommunity.slack.com/api/users.admin.invite?t=#{Date.now()}")
       .header('Accept', 'application/json')
       .header("Content-Type","application/x-www-form-urlencoded")
       .post(data) (err, res, body) ->
-        console.log(body)
         data = JSON.parse(body)
-        msg.send "#{data.ok}"
         if (data.ok)
           console.log("#{sender} sent an invite to #{email_address}")
           msg.reply "Ok, I've sent an invite to #{email_address}"
