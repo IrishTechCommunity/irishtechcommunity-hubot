@@ -12,19 +12,24 @@ unless slackKey?
 module.exports = (robot) ->
   robot.respond /invite (.*)/i, (msg) ->
     sender = msg.message.user.name.toLowerCase()
-    email_address = msg.match[1].split('|')[1].slice(0,-1)
-    data = "email=#{email_address}&channels=C035FCDDD&set_active=true&_attempts=1&token=#{slackKey}"
-    console.log(data)
-    robot.http("https://irishtechcommunity.slack.com/api/users.admin.invite?t=#{Date.now()}")
-      .header('Accept', 'application/json')
-      .header("Content-Type","application/x-www-form-urlencoded")
-      .post(data) (err, res, body) ->
-        data = JSON.parse(body)
-        if (data.ok)
-          console.log("#{sender} sent an invite to #{email_address}")
-          msg.reply "Ok, I've sent an invite to #{email_address}"
-        else
-          console.log("#{sender} sent an invite to #{email_address}, but it failed")
-          console.log(body)
-          console.log(data)
-          msg.reply "Herp, something went wrong"
+    post_split = msg.match[1].split('|')
+    if (post_split[1])
+      email_address = post_split[1].slice(0,-1)
+      if (email_address)
+        data = "email=#{email_address}&channels=C035FCDDD&set_active=true&_attempts=1&token=#{slackKey}"
+        console.log(data)
+        robot.http("https://irishtechcommunity.slack.com/api/users.admin.invite?t=#{Date.now()}")
+          .header('Accept', 'application/json')
+          .header("Content-Type","application/x-www-form-urlencoded")
+          .post(data) (err, res, body) ->
+            data = JSON.parse(body)
+            if (data.ok)
+              console.log("#{sender} sent an invite to #{email_address}")
+              msg.reply "Ok, I've sent an invite to #{email_address}"
+            else
+              console.log("#{sender} sent an invite to #{email_address}, but it failed")
+              console.log(body)
+              console.log(data)
+              msg.reply "Herp, something went wrong"
+    else
+      msg.reply "Was that a valid email address?"
