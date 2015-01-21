@@ -1,7 +1,7 @@
 # Description:
 #   Invite people into the community!
 # Commands:
-#   hubot invite <email_address> - Lists current admins
+#   hubot invite <email_address> - Sends an invite to the provided email address
 # Author:
 #   colmdoyle
 
