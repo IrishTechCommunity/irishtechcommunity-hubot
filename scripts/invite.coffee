@@ -13,9 +13,9 @@ module.exports = (robot) ->
   robot.respond /invite (.*)/i, (msg) ->
     sender = msg.message.user.name.toLowerCase()
     console.log(msg.match[1])
-    post_split = msg.match[1].split('|')
-    if (post_split[1])
-      email_address = post_split[1].slice(0,-1)
+    post_split = msg.match[1].split(' ')
+    if (post_split[0])
+      email_address = post_split[0]
       if (email_address)
         data = "email=#{email_address}&channels=C035FCDDD&set_active=true&_attempts=1&token=#{slackKey}"
         console.log(data)
