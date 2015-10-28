@@ -10,11 +10,23 @@ This README is intended to help get you started. Definitely update and improve t
 
 ### Running hubot Locally
 
-You can test your hubot by running the following.
-
 You can start hubot locally by running:
 
     % bin/hubot
+
+You will get errors without the right environment variables set. At a minimum you need `HUBOT_DUBLINBIKES_API_KEY`, `HUBOT_HEROKU_KEEPALIVE_URL`, and `HUBOT_SLACK_TOKEN`. e.g. on one line in your terminal:
+
+    % HUBOT_DUBLINBIKES_API_KEY='' HUBOT_HEROKU_KEEPALIVE_URL='' HUBOT_SLACK_TOKEN=abcd-12345678901-abcdefghijklmnopqrstuvwx bin/hubot
+
+You can run with a blank Slack token but better to [register one on your own Slack](https://my.slack.com/services/new/bot).
+
+Likewise a real Heroku APP URL will help. Once you have run the Heroku setup below you can get it like so;
+
+    % heroku apps:info -s  | grep web-url | cut -d= -f2
+
+Additionally you can provide a `HUBOT_SLACK_ADMIN_TOKEN` environment variable, though this only generates a warning.
+
+If you want to work with the Dublin Bikes commands then [register for a Dublin Bikes API Key](https://developer.jcdecaux.com/).
 
 You'll see some start up output about where your scripts come from and a
 prompt:
